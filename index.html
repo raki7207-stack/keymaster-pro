@@ -1,0 +1,1025 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>KeyMaster Pro — Car Key Replacement Specialists</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=DM+Sans:wght@300;400;500;600&display=swap');
+  </style>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --navy: #0B1F3A;
+      --navy-mid: #152D50;
+      --gold: #C9A84C;
+      --gold-light: #E5C97A;
+      --cream: #F8F4EE;
+      --text: #1A1A2E;
+      --muted: #6B7A8D;
+      --white: #FFFFFF;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'DM Sans', sans-serif;
+      background: var(--cream);
+      color: var(--text);
+      overflow-x: hidden;
+    }
+
+    /* NAV */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      background: rgba(11, 31, 58, 0.97);
+      backdrop-filter: blur(12px);
+      padding: 0 5%;
+      display: flex; align-items: center; justify-content: space-between;
+      height: 70px;
+      border-bottom: 1px solid rgba(201,168,76,0.2);
+    }
+    .nav-logo {
+      font-family: 'Playfair Display', serif;
+      color: var(--gold);
+      font-size: 1.4rem;
+      font-weight: 700;
+      letter-spacing: 0.02em;
+      display: flex; align-items: center; gap: 10px;
+    }
+    .nav-logo .key-icon { font-size: 1.2rem; }
+    .nav-links { display: flex; gap: 2rem; list-style: none; }
+    .nav-links a {
+      color: rgba(255,255,255,0.8);
+      text-decoration: none;
+      font-size: 0.9rem;
+      font-weight: 500;
+      letter-spacing: 0.04em;
+      transition: color 0.2s;
+    }
+    .nav-links a:hover { color: var(--gold-light); }
+    .nav-cta {
+      background: var(--gold);
+      color: var(--navy);
+      padding: 10px 22px;
+      border-radius: 4px;
+      font-weight: 600;
+      font-size: 0.85rem;
+      letter-spacing: 0.05em;
+      text-decoration: none;
+      transition: background 0.2s, transform 0.15s;
+    }
+    .nav-cta:hover { background: var(--gold-light); transform: translateY(-1px); }
+
+    /* HERO */
+    .hero {
+      min-height: 100vh;
+      background: var(--navy);
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      align-items: center;
+      padding: 70px 5% 0;
+      position: relative;
+      overflow: hidden;
+    }
+    .hero::before {
+      content: '';
+      position: absolute;
+      top: -200px; right: -200px;
+      width: 700px; height: 700px;
+      background: radial-gradient(circle, rgba(201,168,76,0.12) 0%, transparent 65%);
+      pointer-events: none;
+    }
+    .hero::after {
+      content: '';
+      position: absolute;
+      bottom: -100px; left: 30%;
+      width: 500px; height: 500px;
+      background: radial-gradient(circle, rgba(21,45,80,0.8) 0%, transparent 70%);
+      pointer-events: none;
+    }
+    .hero-content {
+      position: relative; z-index: 2;
+      animation: fadeUp 0.9s ease both;
+    }
+    .hero-badge {
+      display: inline-flex; align-items: center; gap: 8px;
+      background: rgba(201,168,76,0.12);
+      border: 1px solid rgba(201,168,76,0.3);
+      color: var(--gold);
+      padding: 6px 14px;
+      border-radius: 50px;
+      font-size: 0.78rem;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      margin-bottom: 1.6rem;
+    }
+    .hero-badge::before { content: '●'; font-size: 0.5rem; animation: pulse 2s infinite; }
+    @keyframes pulse { 0%,100%{opacity:1} 50%{opacity:0.3} }
+
+    .hero h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(2.8rem, 5vw, 4.2rem);
+      line-height: 1.1;
+      color: var(--white);
+      font-weight: 900;
+      margin-bottom: 1.4rem;
+    }
+    .hero h1 span { color: var(--gold); }
+    .hero p {
+      color: rgba(255,255,255,0.65);
+      font-size: 1.05rem;
+      line-height: 1.75;
+      max-width: 480px;
+      margin-bottom: 2.4rem;
+    }
+    .hero-actions { display: flex; gap: 1rem; align-items: center; flex-wrap: wrap; }
+    .btn-primary {
+      background: var(--gold);
+      color: var(--navy);
+      padding: 15px 32px;
+      border-radius: 5px;
+      font-weight: 700;
+      font-size: 0.95rem;
+      text-decoration: none;
+      letter-spacing: 0.03em;
+      transition: all 0.2s;
+      box-shadow: 0 4px 20px rgba(201,168,76,0.3);
+    }
+    .btn-primary:hover { background: var(--gold-light); transform: translateY(-2px); box-shadow: 0 8px 30px rgba(201,168,76,0.4); }
+    .btn-secondary {
+      color: rgba(255,255,255,0.8);
+      text-decoration: none;
+      font-size: 0.9rem;
+      font-weight: 500;
+      display: flex; align-items: center; gap: 8px;
+      transition: color 0.2s;
+    }
+    .btn-secondary:hover { color: var(--gold); }
+    .btn-secondary::before { content: '📞'; font-size: 1rem; }
+
+    .hero-visual {
+      position: relative; z-index: 2;
+      display: flex; justify-content: center; align-items: center;
+      animation: fadeUp 0.9s 0.2s ease both;
+    }
+    .key-graphic {
+      position: relative;
+      width: 380px; height: 380px;
+      display: flex; align-items: center; justify-content: center;
+    }
+    .key-ring {
+      position: absolute;
+      border-radius: 50%;
+      border: 1px solid rgba(201,168,76,0.15);
+      animation: rotateSlow 20s linear infinite;
+    }
+    .key-ring:nth-child(1) { width: 320px; height: 320px; }
+    .key-ring:nth-child(2) { width: 260px; height: 260px; animation-direction: reverse; animation-duration: 15s; }
+    .key-emoji {
+      font-size: 7rem;
+      filter: drop-shadow(0 10px 40px rgba(201,168,76,0.5));
+      position: relative; z-index: 2;
+      animation: float 4s ease-in-out infinite;
+    }
+    @keyframes rotateSlow { from{transform:rotate(0deg)} to{transform:rotate(360deg)} }
+    @keyframes float { 0%,100%{transform:translateY(0)} 50%{transform:translateY(-16px)} }
+
+    .hero-stats {
+      position: absolute; bottom: 0; left: 0; right: 0; z-index: 3;
+      display: flex;
+      border-top: 1px solid rgba(255,255,255,0.06);
+    }
+    .stat {
+      flex: 1;
+      padding: 1.4rem 5%;
+      border-right: 1px solid rgba(255,255,255,0.06);
+      animation: fadeUp 0.9s ease both;
+    }
+    .stat:last-child { border-right: none; }
+    .stat-number {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.8rem;
+      font-weight: 700;
+      color: var(--gold);
+    }
+    .stat-label {
+      font-size: 0.78rem;
+      color: rgba(255,255,255,0.45);
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      margin-top: 2px;
+    }
+
+    @keyframes fadeUp { from{opacity:0;transform:translateY(30px)} to{opacity:1;transform:translateY(0)} }
+
+    /* TRUST BAR */
+    .trust-bar {
+      background: var(--white);
+      padding: 1rem 5%;
+      display: flex; align-items: center; justify-content: center; gap: 3rem;
+      border-bottom: 1px solid rgba(0,0,0,0.06);
+      flex-wrap: wrap;
+    }
+    .trust-item {
+      display: flex; align-items: center; gap: 8px;
+      font-size: 0.82rem;
+      font-weight: 600;
+      color: var(--muted);
+      letter-spacing: 0.03em;
+    }
+    .trust-item span { font-size: 1rem; }
+
+    /* SERVICES */
+    .services {
+      padding: 100px 5%;
+      max-width: 1200px; margin: 0 auto;
+    }
+    .section-label {
+      font-size: 0.75rem;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 0.8rem;
+    }
+    .section-title {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(2rem, 3.5vw, 2.8rem);
+      font-weight: 800;
+      color: var(--navy);
+      line-height: 1.15;
+      margin-bottom: 1rem;
+    }
+    .section-sub {
+      color: var(--muted);
+      font-size: 1rem;
+      line-height: 1.7;
+      max-width: 560px;
+      margin-bottom: 3.5rem;
+    }
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 1.5rem;
+    }
+    .service-card {
+      background: var(--white);
+      border: 1px solid rgba(0,0,0,0.07);
+      border-radius: 12px;
+      padding: 2.2rem;
+      transition: all 0.3s;
+      position: relative;
+      overflow: hidden;
+    }
+    .service-card::before {
+      content: '';
+      position: absolute; top: 0; left: 0; right: 0;
+      height: 3px;
+      background: linear-gradient(90deg, var(--gold), var(--gold-light));
+      opacity: 0;
+      transition: opacity 0.3s;
+    }
+    .service-card:hover { transform: translateY(-4px); box-shadow: 0 16px 48px rgba(0,0,0,0.1); border-color: rgba(201,168,76,0.3); }
+    .service-card:hover::before { opacity: 1; }
+    .service-icon { font-size: 2.2rem; margin-bottom: 1.2rem; display: block; }
+    .service-card h3 {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.25rem;
+      font-weight: 700;
+      color: var(--navy);
+      margin-bottom: 0.6rem;
+    }
+    .service-card p { color: var(--muted); font-size: 0.9rem; line-height: 1.7; margin-bottom: 1.2rem; }
+    .service-price {
+      font-weight: 700;
+      color: var(--gold);
+      font-size: 0.9rem;
+      letter-spacing: 0.02em;
+    }
+
+    /* HOW IT WORKS */
+    .how {
+      background: var(--navy);
+      padding: 100px 5%;
+      position: relative;
+      overflow: hidden;
+    }
+    .how::before {
+      content: '';
+      position: absolute; top: 0; right: 0;
+      width: 50%; height: 100%;
+      background: linear-gradient(135deg, transparent, rgba(201,168,76,0.04));
+    }
+    .how-inner { max-width: 1200px; margin: 0 auto; }
+    .how .section-title { color: var(--white); }
+    .how .section-sub { color: rgba(255,255,255,0.5); }
+    .steps { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 0; position: relative; }
+    .steps::before {
+      content: '';
+      position: absolute; top: 40px; left: 10%; right: 10%; height: 1px;
+      background: linear-gradient(90deg, transparent, rgba(201,168,76,0.3), transparent);
+    }
+    .step {
+      text-align: center; padding: 2rem 1.5rem;
+      animation: fadeUp 0.6s ease both;
+    }
+    .step-num {
+      width: 64px; height: 64px;
+      border-radius: 50%;
+      background: rgba(201,168,76,0.1);
+      border: 1px solid rgba(201,168,76,0.3);
+      display: flex; align-items: center; justify-content: center;
+      margin: 0 auto 1.4rem;
+      font-family: 'Playfair Display', serif;
+      font-size: 1.4rem;
+      font-weight: 700;
+      color: var(--gold);
+    }
+    .step h4 {
+      font-family: 'Playfair Display', serif;
+      color: var(--white);
+      font-size: 1.1rem;
+      margin-bottom: 0.6rem;
+    }
+    .step p { color: rgba(255,255,255,0.45); font-size: 0.88rem; line-height: 1.65; }
+
+    /* CTA STRIP */
+    .cta-strip {
+      background: var(--gold);
+      padding: 3.5rem 5%;
+      display: flex; align-items: center; justify-content: space-between;
+      gap: 2rem; flex-wrap: wrap;
+    }
+    .cta-strip h2 {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(1.5rem, 3vw, 2rem);
+      color: var(--navy);
+      font-weight: 800;
+    }
+    .cta-strip p { color: rgba(11,31,58,0.7); font-size: 0.95rem; margin-top: 0.3rem; }
+    .btn-dark {
+      background: var(--navy);
+      color: var(--white);
+      padding: 15px 32px;
+      border-radius: 5px;
+      font-weight: 700;
+      font-size: 0.9rem;
+      text-decoration: none;
+      white-space: nowrap;
+      transition: all 0.2s;
+      letter-spacing: 0.04em;
+    }
+    .btn-dark:hover { background: #0d2445; transform: translateY(-2px); }
+
+    /* TESTIMONIALS */
+    .testimonials {
+      padding: 100px 5%;
+      max-width: 1200px; margin: 0 auto;
+    }
+    .testi-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(290px, 1fr));
+      gap: 1.5rem;
+    }
+    .testi-card {
+      background: var(--white);
+      border: 1px solid rgba(0,0,0,0.07);
+      border-radius: 12px;
+      padding: 2rem;
+    }
+    .stars { color: var(--gold); letter-spacing: 2px; font-size: 0.9rem; margin-bottom: 1rem; }
+    .testi-card blockquote {
+      color: var(--text);
+      font-size: 0.95rem;
+      line-height: 1.75;
+      margin-bottom: 1.4rem;
+      font-style: italic;
+    }
+    .testi-author { display: flex; align-items: center; gap: 12px; }
+    .avatar {
+      width: 42px; height: 42px; border-radius: 50%;
+      background: linear-gradient(135deg, var(--navy), var(--navy-mid));
+      display: flex; align-items: center; justify-content: center;
+      color: var(--gold); font-weight: 700; font-size: 0.9rem;
+    }
+    .author-info strong { display: block; font-size: 0.88rem; color: var(--navy); }
+    .author-info span { font-size: 0.78rem; color: var(--muted); }
+
+    /* FOOTER */
+    footer {
+      background: var(--navy);
+      color: rgba(255,255,255,0.5);
+      padding: 3.5rem 5% 2rem;
+    }
+    .footer-inner {
+      max-width: 1200px; margin: 0 auto;
+      display: flex; gap: 3rem; flex-wrap: wrap;
+      padding-bottom: 2.5rem;
+      border-bottom: 1px solid rgba(255,255,255,0.07);
+    }
+    .footer-brand { flex: 1; min-width: 200px; }
+    .footer-brand .nav-logo { font-size: 1.2rem; margin-bottom: 0.8rem; }
+    .footer-brand p { font-size: 0.85rem; line-height: 1.7; max-width: 260px; }
+    .footer-col h5 {
+      color: var(--white);
+      font-size: 0.8rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      margin-bottom: 1rem;
+    }
+    .footer-col ul { list-style: none; }
+    .footer-col li { margin-bottom: 0.5rem; }
+    .footer-col a { color: rgba(255,255,255,0.45); text-decoration: none; font-size: 0.85rem; transition: color 0.2s; }
+    .footer-col a:hover { color: var(--gold); }
+    .footer-bottom {
+      max-width: 1200px; margin: 2rem auto 0;
+      display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem;
+      font-size: 0.78rem;
+    }
+    .footer-bottom a { color: rgba(255,255,255,0.3); text-decoration: none; }
+
+    /* CONTACT SECTION */
+    .contact {
+      padding: 100px 5%;
+      background: var(--navy);
+      position: relative;
+      overflow: hidden;
+    }
+    .contact::before {
+      content: '';
+      position: absolute; bottom: -200px; right: -100px;
+      width: 600px; height: 600px;
+      background: radial-gradient(circle, rgba(201,168,76,0.08) 0%, transparent 65%);
+    }
+    .contact-inner {
+      max-width: 1200px; margin: 0 auto;
+      display: grid; grid-template-columns: 1fr 1fr; gap: 5rem;
+      align-items: start; position: relative; z-index: 2;
+    }
+    .contact .section-title { color: var(--white); }
+    .contact .section-sub { color: rgba(255,255,255,0.5); margin-bottom: 2.5rem; }
+
+    .contact-cards { display: flex; flex-direction: column; gap: 1rem; }
+    .contact-card {
+      background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 10px;
+      padding: 1.4rem 1.6rem;
+      display: flex; align-items: flex-start; gap: 1rem;
+      transition: border-color 0.2s, background 0.2s;
+    }
+    .contact-card:hover { border-color: rgba(201,168,76,0.3); background: rgba(201,168,76,0.04); }
+    .contact-card-icon {
+      font-size: 1.5rem;
+      width: 44px; height: 44px; flex-shrink: 0;
+      background: rgba(201,168,76,0.1);
+      border-radius: 8px;
+      display: flex; align-items: center; justify-content: center;
+    }
+    .contact-card-text strong {
+      display: block;
+      color: var(--gold);
+      font-size: 0.75rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      margin-bottom: 0.3rem;
+    }
+    .contact-card-text span {
+      color: rgba(255,255,255,0.75);
+      font-size: 0.95rem;
+      line-height: 1.5;
+    }
+    .contact-card-text a {
+      color: rgba(255,255,255,0.75);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+    .contact-card-text a:hover { color: var(--gold); }
+
+    .showroom-hours {
+      background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 10px;
+      padding: 1.6rem;
+      margin-top: 1rem;
+    }
+    .showroom-hours h4 {
+      color: var(--gold);
+      font-size: 0.75rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      margin-bottom: 1rem;
+      display: flex; align-items: center; gap: 8px;
+    }
+    .hours-row {
+      display: flex; justify-content: space-between;
+      padding: 0.5rem 0;
+      border-bottom: 1px solid rgba(255,255,255,0.05);
+      font-size: 0.88rem;
+    }
+    .hours-row:last-child { border-bottom: none; }
+    .hours-row .day { color: rgba(255,255,255,0.5); }
+    .hours-row .time { color: rgba(255,255,255,0.85); font-weight: 500; }
+    .hours-row .time.open { color: #4ade80; }
+
+    /* CONTACT FORM SIDE */
+    .contact-form-wrap {
+      background: var(--white);
+      border-radius: 16px;
+      padding: 2.5rem;
+    }
+    .contact-form-wrap h3 {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.5rem;
+      color: var(--navy);
+      margin-bottom: 0.5rem;
+    }
+    .contact-form-wrap p { color: var(--muted); font-size: 0.88rem; margin-bottom: 1.8rem; }
+
+    .form-group { margin-bottom: 1.1rem; }
+    .form-group label {
+      display: block;
+      font-size: 0.78rem;
+      font-weight: 600;
+      color: var(--navy);
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      margin-bottom: 0.4rem;
+    }
+    .form-group input,
+    .form-group select,
+    .form-group textarea {
+      width: 100%;
+      padding: 11px 14px;
+      border: 1.5px solid rgba(0,0,0,0.1);
+      border-radius: 6px;
+      font-family: 'DM Sans', sans-serif;
+      font-size: 0.9rem;
+      color: var(--text);
+      background: var(--cream);
+      transition: border-color 0.2s;
+      outline: none;
+    }
+    .form-group input:focus,
+    .form-group select:focus,
+    .form-group textarea:focus { border-color: var(--gold); background: var(--white); }
+    .form-group textarea { resize: vertical; min-height: 90px; }
+    .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+
+    .btn-whatsapp-form {
+      width: 100%;
+      background: #25D366;
+      color: var(--white);
+      border: none;
+      padding: 14px;
+      border-radius: 6px;
+      font-family: 'DM Sans', sans-serif;
+      font-size: 0.95rem;
+      font-weight: 700;
+      cursor: pointer;
+      display: flex; align-items: center; justify-content: center; gap: 10px;
+      transition: all 0.2s;
+      text-decoration: none;
+      margin-top: 0.5rem;
+    }
+    .btn-whatsapp-form:hover { background: #1ebe5d; transform: translateY(-2px); box-shadow: 0 8px 24px rgba(37,211,102,0.3); }
+    .or-divider {
+      display: flex; align-items: center; gap: 1rem;
+      color: var(--muted); font-size: 0.78rem; margin: 0.8rem 0;
+    }
+    .or-divider::before, .or-divider::after {
+      content: ''; flex: 1; height: 1px; background: rgba(0,0,0,0.08);
+    }
+    .btn-submit-form {
+      width: 100%;
+      background: var(--navy);
+      color: var(--white);
+      border: none;
+      padding: 14px;
+      border-radius: 6px;
+      font-family: 'DM Sans', sans-serif;
+      font-size: 0.95rem;
+      font-weight: 700;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+    .btn-submit-form:hover { background: var(--navy-mid); transform: translateY(-1px); }
+
+    /* FLOATING WHATSAPP */
+    .wa-float {
+      position: fixed;
+      bottom: 28px; right: 28px;
+      z-index: 999;
+      display: flex; flex-direction: column; align-items: flex-end; gap: 10px;
+    }
+    .wa-bubble {
+      background: var(--white);
+      border-radius: 12px;
+      padding: 12px 16px;
+      box-shadow: 0 8px 32px rgba(0,0,0,0.15);
+      font-size: 0.85rem;
+      color: var(--text);
+      max-width: 200px;
+      line-height: 1.4;
+      opacity: 0;
+      transform: translateY(10px) scale(0.95);
+      transition: all 0.3s;
+      pointer-events: none;
+    }
+    .wa-bubble.show { opacity: 1; transform: translateY(0) scale(1); pointer-events: auto; }
+    .wa-bubble strong { display: block; color: var(--navy); margin-bottom: 2px; font-size: 0.82rem; }
+    .wa-btn {
+      width: 58px; height: 58px;
+      background: #25D366;
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      box-shadow: 0 6px 24px rgba(37,211,102,0.45);
+      text-decoration: none;
+      font-size: 1.7rem;
+      transition: all 0.2s;
+      animation: waPop 0.5s 2s ease both;
+    }
+    .wa-btn:hover { transform: scale(1.1); box-shadow: 0 10px 32px rgba(37,211,102,0.55); }
+    @keyframes waPop { from{opacity:0;transform:scale(0.5)} to{opacity:1;transform:scale(1)} }
+
+    /* NAV CONTACT LINK */
+    .nav-wa {
+      background: #25D366;
+      color: var(--white) !important;
+      padding: 6px 14px;
+      border-radius: 4px;
+      font-weight: 600 !important;
+    }
+    .nav-wa:hover { opacity: 0.9; color: var(--white) !important; }
+
+    /* MOBILE */
+    @media (max-width: 768px) {
+      .hero { grid-template-columns: 1fr; padding-top: 90px; text-align: center; }
+      .hero p { margin: 0 auto 2rem; }
+      .hero-actions { justify-content: center; }
+      .hero-visual { display: none; }
+      .hero-stats { position: static; flex-wrap: wrap; }
+      .stat { padding: 1rem 1.5rem; min-width: 50%; }
+      .nav-links { display: none; }
+      .steps::before { display: none; }
+      .cta-strip { text-align: center; flex-direction: column; align-items: center; }
+      .contact-inner { grid-template-columns: 1fr; gap: 2.5rem; }
+      .form-row { grid-template-columns: 1fr; }
+      .wa-float { bottom: 18px; right: 18px; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav>
+    <div class="nav-logo"><span class="key-icon">🔑</span> KeyMaster Pro</div>
+    <ul class="nav-links">
+      <li><a href="#services">Services</a></li>
+      <li><a href="#how">How It Works</a></li>
+      <li><a href="#testimonials">Reviews</a></li>
+      <li><a href="#contact">Contact</a></li>
+      <li><a href="https://wa.me/18008166036" target="_blank" class="nav-wa">💬 WhatsApp</a></li>
+    </ul>
+    <a href="tel:18005551234" class="nav-cta">📞 Call Now</a>
+  </nav>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-content">
+      <div class="hero-badge">Available 24 / 7 Emergency Service</div>
+      <h1>Lost Your<br/><span>Car Keys?</span><br/>We've Got You.</h1>
+      <p>Fast, certified car key replacement and locksmith services. On-site programming, transponder keys, smart fobs, and more — with a 30-minute response guarantee.</p>
+      <div class="hero-actions">
+        <a href="tel:18005551234" class="btn-primary">📞 Get Immediate Help</a>
+        <a href="#services" class="btn-secondary">View our services</a>
+      </div>
+    </div>
+    <div class="hero-visual">
+      <div class="key-graphic">
+        <div class="key-ring"></div>
+        <div class="key-ring"></div>
+        <div class="key-emoji">🔑</div>
+      </div>
+    </div>
+    <div class="hero-stats">
+      <div class="stat">
+        <div class="stat-number">30 min</div>
+        <div class="stat-label">Response Time</div>
+      </div>
+      <div class="stat">
+        <div class="stat-number">12,000+</div>
+        <div class="stat-label">Keys Replaced</div>
+      </div>
+      <div class="stat">
+        <div class="stat-number">All Makes</div>
+        <div class="stat-label">& Models Covered</div>
+      </div>
+      <div class="stat">
+        <div class="stat-number">5 ★</div>
+        <div class="stat-label">Average Rating</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- TRUST BAR -->
+  <div class="trust-bar">
+    <div class="trust-item"><span>🛡️</span> Fully Licensed & Insured</div>
+    <div class="trust-item"><span>⚡</span> Same-Day Service</div>
+    <div class="trust-item"><span>🚗</span> All Vehicle Makes & Models</div>
+    <div class="trust-item"><span>💳</span> Upfront, Fixed Pricing</div>
+    <div class="trust-item"><span>✅</span> 1-Year Warranty on All Keys</div>
+  </div>
+
+  <!-- SERVICES -->
+  <section class="services" id="services">
+    <div class="section-label">What We Do</div>
+    <h2 class="section-title">Complete Car Key<br/>Replacement Services</h2>
+    <p class="section-sub">From basic key cutting to advanced transponder programming, our certified technicians handle every type of car key — right at your location.</p>
+    <div class="services-grid">
+      <div class="service-card">
+        <span class="service-icon">🔑</span>
+        <h3>Spare Key Cutting</h3>
+        <p>Precision-cut duplicate keys for all vehicle types. Don't wait until you're locked out — get a spare today.</p>
+        <div class="service-price">From $49</div>
+      </div>
+      <div class="service-card">
+        <span class="service-icon">📡</span>
+        <h3>Transponder Programming</h3>
+        <p>Modern vehicles need chipped keys programmed to your car's ECU. We carry equipment for all major brands.</p>
+        <div class="service-price">From $120</div>
+      </div>
+      <div class="service-card">
+        <span class="service-icon">🔲</span>
+        <h3>Smart Key & Key Fob</h3>
+        <p>Replacement and programming of proximity keys, push-to-start fobs, and remote entry systems.</p>
+        <div class="service-price">From $150</div>
+      </div>
+      <div class="service-card">
+        <span class="service-icon">🚪</span>
+        <h3>Lockout Service</h3>
+        <p>Locked your keys inside? Our technicians will get you back in your vehicle quickly and without damage.</p>
+        <div class="service-price">From $65</div>
+      </div>
+      <div class="service-card">
+        <span class="service-icon">🔄</span>
+        <h3>Ignition Repair</h3>
+        <p>Worn or damaged ignition? We repair and replace ignition cylinders on-site for most makes and models.</p>
+        <div class="service-price">From $180</div>
+      </div>
+      <div class="service-card">
+        <span class="service-icon">🚨</span>
+        <h3>24/7 Emergency Call-Out</h3>
+        <p>Stranded at night, on the highway, or in a parking garage? We come to you — any time, any place.</p>
+        <div class="service-price">Available 24/7</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- HOW IT WORKS -->
+  <section class="how" id="how">
+    <div class="how-inner">
+      <div class="section-label">The Process</div>
+      <h2 class="section-title">Back on the Road in 3 Steps</h2>
+      <p class="section-sub">Simple, transparent, and fast. No hidden fees, no waiting at a dealership for days.</p>
+      <div class="steps">
+        <div class="step">
+          <div class="step-num">1</div>
+          <h4>Call or Book Online</h4>
+          <p>Tell us your vehicle make, model, and location. We'll give you an instant, fixed quote — no surprises.</p>
+        </div>
+        <div class="step">
+          <div class="step-num">2</div>
+          <h4>We Come to You</h4>
+          <p>A certified technician arrives at your location within 30 minutes, fully equipped to solve your problem on the spot.</p>
+        </div>
+        <div class="step">
+          <div class="step-num">3</div>
+          <h4>Drive Away</h4>
+          <p>New key cut, programmed, and tested. You're good to go — with a 1-year warranty on every key we make.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA STRIP -->
+  <div class="cta-strip">
+    <div>
+      <h2>Need a key replacement right now?</h2>
+      <p>Our technicians are standing by — average response time is under 30 minutes.</p>
+    </div>
+    <a href="tel:18005551234" class="btn-dark">📞 800-816-6036</a>
+  </div>
+
+  <!-- TESTIMONIALS -->
+  <section class="testimonials" id="testimonials">
+    <div class="section-label">Customer Reviews</div>
+    <h2 class="section-title">Trusted by Thousands<br/>of Drivers</h2>
+    <p class="section-sub" style="margin-bottom:3rem;">Don't take our word for it — hear from drivers we've helped get back on the road.</p>
+    <div class="testi-grid">
+      <div class="testi-card">
+        <div class="stars">★★★★★</div>
+        <blockquote>"Lost my BMW key fob on a Saturday night. KeyMaster Pro showed up in 25 minutes and had me driving again in under an hour. Incredible service."</blockquote>
+        <div class="testi-author">
+          <div class="avatar">MR</div>
+          <div class="author-info">
+            <strong>Michael R.</strong>
+            <span>BMW 5 Series Owner</span>
+          </div>
+        </div>
+      </div>
+      <div class="testi-card">
+        <div class="stars">★★★★★</div>
+        <blockquote>"The dealership quoted me $450 and a 3-day wait. KeyMaster did it in 45 minutes for $160, right in my driveway. Will never go to a dealership again."</blockquote>
+        <div class="testi-author">
+          <div class="avatar">SL</div>
+          <div class="author-info">
+            <strong>Sarah L.</strong>
+            <span>Toyota RAV4 Owner</span>
+          </div>
+        </div>
+      </div>
+      <div class="testi-card">
+        <div class="stars">★★★★★</div>
+        <blockquote>"Locked myself out at the grocery store parking lot with my toddler inside. They arrived in 20 minutes and were professional and calm the entire time. Thank you!"</blockquote>
+        <div class="testi-author">
+          <div class="avatar">JK</div>
+          <div class="author-info">
+            <strong>Jessica K.</strong>
+            <span>Honda Pilot Owner</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section class="contact" id="contact">
+    <div class="contact-inner">
+      <!-- LEFT: Info -->
+      <div>
+        <div class="section-label">Get In Touch</div>
+        <h2 class="section-title">Visit Our Showroom<br/>or Contact Us</h2>
+        <p class="section-sub">Come see us in person, give us a call, or message us on WhatsApp — we're always happy to help.</p>
+
+        <div class="contact-cards">
+          <div class="contact-card">
+            <div class="contact-card-icon">📍</div>
+            <div class="contact-card-text">
+              <strong>Showroom Address</strong>
+              <span>142 Motor Mile Drive, Unit 4<br/>Springfield, ST 12345<br/>Free parking available on site</span>
+            </div>
+          </div>
+          <div class="contact-card">
+            <div class="contact-card-icon">📞</div>
+            <div class="contact-card-text">
+              <strong>Phone</strong>
+              <span><a href="tel:18005551234">1-800-555-1234</a></span>
+            </div>
+          </div>
+          <div class="contact-card">
+            <div class="contact-card-icon">💬</div>
+            <div class="contact-card-text">
+              <strong>WhatsApp</strong>
+              <span><a href="https://wa.me/18005551234" target="_blank">Message us on WhatsApp →</a></span>
+            </div>
+          </div>
+          <div class="contact-card">
+            <div class="contact-card-icon">✉️</div>
+            <div class="contact-card-text">
+              <strong>Email</strong>
+              <span><a href="mailto:help@keymasterpro.com">help@keymasterpro.com</a></span>
+            </div>
+          </div>
+        </div>
+
+        <div class="showroom-hours">
+          <h4>🕐 Showroom Hours</h4>
+          <div class="hours-row"><span class="day">Monday – Friday</span><span class="time open">8:00 AM – 6:00 PM</span></div>
+          <div class="hours-row"><span class="day">Saturday</span><span class="time open">9:00 AM – 4:00 PM</span></div>
+          <div class="hours-row"><span class="day">Sunday</span><span class="time">Closed (Emergency calls only)</span></div>
+          <div class="hours-row"><span class="day">Public Holidays</span><span class="time">Emergency service available</span></div>
+        </div>
+      </div>
+
+      <!-- RIGHT: Contact form -->
+      <div class="contact-form-wrap">
+        <h3>Send Us a Message</h3>
+        <p>Fill in your details and we'll get back to you within the hour during business hours.</p>
+
+        <div class="form-row">
+          <div class="form-group">
+            <label>Your Name</label>
+            <input type="text" placeholder="John Smith" />
+          </div>
+          <div class="form-group">
+            <label>Phone Number</label>
+            <input type="tel" placeholder="+1 (555) 000-0000" />
+          </div>
+        </div>
+        <div class="form-group">
+          <label>Vehicle (Make & Model)</label>
+          <input type="text" placeholder="e.g. Toyota Camry 2021" />
+        </div>
+        <div class="form-group">
+          <label>Service Needed</label>
+          <select>
+            <option value="">Select a service…</option>
+            <option>Spare Key Cutting</option>
+            <option>Transponder Key Programming</option>
+            <option>Smart Key / Key Fob</option>
+            <option>Lockout Service</option>
+            <option>Ignition Repair</option>
+            <option>Emergency Call-Out</option>
+            <option>Other / Not Sure</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label>Message (Optional)</label>
+          <textarea placeholder="Any additional details about your situation…"></textarea>
+        </div>
+
+        <a href="https://wa.me/18005551234?text=Hi%2C%20I%20need%20help%20with%20my%20car%20key." target="_blank" class="btn-whatsapp-form">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+          Chat on WhatsApp
+        </a>
+        <div class="or-divider">or submit the form</div>
+        <button class="btn-submit-form">Send Message →</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- FLOATING WHATSAPP -->
+  <div class="wa-float">
+    <div class="wa-bubble" id="waBubble">
+      <strong>Need help fast?</strong>
+      Chat with us on WhatsApp — we usually reply in minutes!
+    </div>
+    <a href="https://wa.me/18005551234?text=Hi%2C%20I%20need%20help%20with%20my%20car%20key." target="_blank" class="wa-btn" id="waBtn" title="Chat on WhatsApp">💬</a>
+  </div>
+
+  <script>
+    // Show WhatsApp bubble after 3 seconds
+    setTimeout(() => {
+      document.getElementById('waBubble').classList.add('show');
+    }, 3000);
+    // Hide bubble when clicked
+    document.getElementById('waBtn').addEventListener('click', () => {
+      document.getElementById('waBubble').classList.remove('show');
+    });
+  </script>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="footer-inner">
+      <div class="footer-brand">
+        <div class="nav-logo">🔑 KeyMaster Pro</div>
+        <p>Certified car key replacement and locksmith services. Available 24/7 across the region.</p>
+      </div>
+      <div class="footer-col">
+        <h5>Services</h5>
+        <ul>
+          <li><a href="#">Spare Key Cutting</a></li>
+          <li><a href="#">Transponder Keys</a></li>
+          <li><a href="#">Smart Key & Fob</a></li>
+          <li><a href="#">Lockout Service</a></li>
+          <li><a href="#">Ignition Repair</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h5>Company</h5>
+        <ul>
+          <li><a href="#">About Us</a></li>
+          <li><a href="#">Service Areas</a></li>
+          <li><a href="#">Pricing</a></li>
+          <li><a href="#">Reviews</a></li>
+          <li><a href="#">Contact</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h5>Contact</h5>
+        <ul>
+          <li><a href="tel:18005551234">📞 1-800-555-1234</a></li>
+          <li><a href="https://wa.me/18005551234" target="_blank">💬 WhatsApp Us</a></li>
+          <li><a href="mailto:help@keymasterpro.com">✉️ help@keymasterpro.com</a></li>
+          <li><a href="#contact">📍 142 Motor Mile Drive, Unit 4</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2026 KeyMaster Pro. All rights reserved.</span>
+      <div style="display:flex;gap:1.5rem;">
+        <a href="#">Privacy Policy</a>
+        <a href="#">Terms of Service</a>
+        <a href="#">Sitemap</a>
+      </div>
+    </div>
+  </footer>
+
+</body>
+</html>
